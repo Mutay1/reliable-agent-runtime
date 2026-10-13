@@ -1,0 +1,48 @@
+{
+  "result": {
+    "runId": "demo-1",
+    "status": "completed",
+    "output": {
+      "recommendation": "expedite",
+      "order": {
+        "orderId": "SM-1042",
+        "status": "delayed",
+        "promisedDays": 5
+      }
+    },
+    "reason": "recommendation is actionable",
+    "steps": 2,
+    "costCents": 1
+  },
+  "audit": [
+    {
+      "type": "run_started",
+      "runId": "demo-1",
+      "task": "Recommend the next action for delayed order SM-1042"
+    },
+    {
+      "type": "tool_requested",
+      "runId": "demo-1",
+      "step": 1,
+      "call": {
+        "id": "lookup-order",
+        "tool": "orders.get",
+        "input": { "orderId": "SM-1042" },
+        "risk": "read"
+      }
+    },
+    {
+      "type": "tool_completed",
+      "runId": "demo-1",
+      "step": 1,
+      "callId": "lookup-order",
+      "costCents": 1
+    },
+    {
+      "type": "run_finished",
+      "runId": "demo-1",
+      "status": "completed",
+      "reason": "recommendation is actionable"
+    }
+  ]
+}
